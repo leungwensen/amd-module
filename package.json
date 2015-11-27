@@ -1,0 +1,38 @@
+{
+  "name": "amd-module",
+  "title": "amd-module",
+  "description": "",
+  "homepage": "https://github.com/leungwensen/amd-module",
+  "version": "0.0.20151127",
+  "main": "lib/index.js",
+  "license": "MIT",
+  "author": {
+    "description": "team of amd-module",
+    "url": "https://github.com/leungwensen/amd-module/graphs/contributors"
+  },
+  "bugs": {
+    "url": "https://github.com/leungwensen/amd-module/issues"
+  },
+  "dependencies": {
+    "babel-preset-es2015": "*",
+    "zero-encoding": "*",
+    "zero-events": "*",
+    "zero-fmt": "*",
+    "zero-lang": "*"
+  },
+  "devDependencies": {
+  },
+  "engines": {
+    "node": ">=0.8.0"
+  },
+  "keywords": [
+    "leungwensen",
+    "amd-module"
+  ],
+  "repository": {
+    "type": "https",
+    "url": "https://github.com/leungwensen/amd-module.git"
+  },
+  "scripts": {
+  }
+}

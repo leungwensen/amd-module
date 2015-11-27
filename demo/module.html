@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>module</title>
+  </head>
+  <body>
+    <script src="../dist/loader.js"></script>
+<script>
+define([
+  'amd-module/Module'
+], function (
+  Module
+) {
+  Module.on('module-meta-got', function (meta) {
+    console.log('meta got!!', meta);
+  });
+  Module.on('module-initialised', function (mod) {
+    console.log('initialised!!', mod);
+  });
+  Module.on('module-deps-processed', function (mod) {
+    console.log('deps processed!!', mod);
+  });
+  Module.on('module-executed', function (mod) {
+    console.log('executed!!', mod);
+  });
+  console.log(Module, Module._events);
+});
+</script>
+    <script src="module/moduleC.js"></script>
+    <script src="module/moduleD.js"></script>
+    <script>
+define([
+  './module/moduleB'
+], function (
+  moduleB
+) {
+  console.log('loaded ' + moduleB);
+});
+
+define([
+  './module/moduleC'
+], function (
+  moduleC
+) {
+  console.log('loaded ' + moduleC);
+});
+
+define([
+  'amd-module/Module'
+], function (
+  Module
+) {
+  console.log(Module);
+});
+    </script>
+  </body>
+</html>
