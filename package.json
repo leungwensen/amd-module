@@ -4,7 +4,7 @@
   "description": "",
   "homepage": "https://github.com/leungwensen/amd-module",
   "version": "0.0.20151127",
-  "main": "lib/index.js",
+  "main": "define.js",
   "license": "MIT",
   "author": {
     "description": "team of amd-module",
@@ -26,8 +26,9 @@
     "node": ">=0.8.0"
   },
   "keywords": [
-    "leungwensen",
-    "amd-module"
+    "amd",
+    "amd-module",
+    "define"
   ],
   "repository": {
     "type": "https",
