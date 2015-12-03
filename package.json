@@ -3,7 +3,7 @@
 	"title": "amd-module",
 	"description": "",
 	"homepage": "https://github.com/leungwensen/amd-module",
-	"version": "0.0.20151127",
+	"version": "0.0.20151203",
 	"main": "define.js",
 	"license": "MIT",
 	"author": {
