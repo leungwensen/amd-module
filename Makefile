@@ -12,7 +12,7 @@ all:
 preinstall:
 	npm  install -g cnpm --registry=http://registry.npm.taobao.org
 	cnpm install -g babel-cli
-	cnpm install -g npm2spm
+	cnpm install -g package-helper
 	cnpm install -g browserify
 install:
 	cnpm install
@@ -25,7 +25,7 @@ test:
 publish:
 	npm publish
 	cnpm sync amd-module
-	npm2spm --publish
+	package-helper 2spm --publish
 server:
 	sh bin/server.sh
 

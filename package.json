@@ -1,39 +1,46 @@
 {
-  "name": "amd-module",
-  "title": "amd-module",
-  "description": "",
-  "homepage": "https://github.com/leungwensen/amd-module",
-  "version": "0.0.20151127",
-  "main": "define.js",
-  "license": "MIT",
-  "author": {
-    "description": "team of amd-module",
-    "url": "https://github.com/leungwensen/amd-module/graphs/contributors"
-  },
-  "bugs": {
-    "url": "https://github.com/leungwensen/amd-module/issues"
-  },
-  "dependencies": {
-    "babel-preset-es2015": "*",
-    "zero-encoding": "*",
-    "zero-events": "*",
-    "zero-fmt": "*",
-    "zero-lang": "*"
-  },
-  "devDependencies": {
-  },
-  "engines": {
-    "node": ">=0.8.0"
-  },
-  "keywords": [
-    "amd",
-    "amd-module",
-    "define"
-  ],
-  "repository": {
-    "type": "https",
-    "url": "https://github.com/leungwensen/amd-module.git"
-  },
-  "scripts": {
-  }
+	"name": "amd-module",
+	"title": "amd-module",
+	"description": "",
+	"homepage": "https://github.com/leungwensen/amd-module",
+	"version": "0.0.20151127",
+	"main": "define.js",
+	"license": "MIT",
+	"author": {
+		"description": "team of amd-module",
+		"url": "https://github.com/leungwensen/amd-module/graphs/contributors"
+	},
+	"bugs": {
+		"url": "https://github.com/leungwensen/amd-module/issues"
+	},
+	"dependencies": {
+		"zero-encoding": "^0.0.20151202",
+		"zero-events": "^0.0.20151202",
+		"zero-fmt": "^0.0.20151202",
+		"zero-lang": "^0.0.20151202"
+	},
+	"devDependencies": {
+		"babel-preset-es2015": "^6.1.18"
+	},
+	"engines": {
+		"node": ">=0.8.0"
+	},
+	"keywords": [
+		"amd",
+		"amd-module",
+		"define"
+	],
+	"repository": {
+		"type": "https",
+		"url": "https://github.com/leungwensen/amd-module.git"
+	},
+	"spm": {
+		"main": "define.js",
+		"dependencies": {
+			"zero-encoding": "^0.0.20151202",
+			"zero-events": "^0.0.20151202",
+			"zero-fmt": "^0.0.20151202",
+			"zero-lang": "^0.0.20151202"
+		}
+	}
 }

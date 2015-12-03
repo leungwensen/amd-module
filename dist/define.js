@@ -163,12 +163,11 @@ define('amd-module/define', function () {
 module.exports = global.define = Module.define = define;
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{"./Module":1,"zero-lang/array":4,"zero-lang/type":8}],3:[function(require,module,exports){
+'use strict';
 
 /* jshint node: true, esnext: true, loopfunc: true, undef: true, unused: true */
 
 // TODO NEED to strengthen
-
-'use strict';
 
 var arrayUtils = require('zero-lang/array');
 
@@ -233,9 +232,11 @@ var event = function event(target) {
 
 module.exports = event;
 },{"zero-lang/array":4}],4:[function(require,module,exports){
-/* jshint esnext: true, loopfunc: true */
-
 'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+/* jshint esnext: true, loopfunc: true */
 
 var checkType = require('./type');
 var numberUtils = require('./number');
@@ -245,7 +246,7 @@ var AP = Array.prototype;
 var slice = AP.slice;
 
 function isArrayLike(arr) {
-    return typeof arr === 'object' && numberUtils.isFinite(arr.length);
+    return (typeof arr === 'undefined' ? 'undefined' : _typeof(arr)) === 'object' && numberUtils.isFinite(arr.length);
 }
 function toArray(arr) {
     return isArrayLike(arr) ? slice.call(arr) : [];
@@ -495,19 +496,21 @@ var arrayUtils = {
 module.exports = arrayUtils;
 },{"./number":6,"./type":8}],5:[function(require,module,exports){
 (function (global){
+'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 /* jshint node: true, esnext: true, loopfunc: true, undef: true, unused: true */
 /* global window, global, self */
 
-'use strict';
-
 var undefStr = 'undefined';
 
-module.exports = typeof window !== undefStr ? window : typeof global !== undefStr ? global : typeof self !== undefStr ? self : {};
+module.exports = (typeof window === 'undefined' ? 'undefined' : _typeof(window)) !== undefStr ? window : (typeof global === 'undefined' ? 'undefined' : _typeof(global)) !== undefStr ? global : (typeof self === 'undefined' ? 'undefined' : _typeof(self)) !== undefStr ? self : {};
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
 },{}],6:[function(require,module,exports){
-/* jshint esnext: true, loopfunc: true */
-
 'use strict';
+
+/* jshint esnext: true, loopfunc: true */
 
 var checkType = require('./type');
 
@@ -561,9 +564,9 @@ numberUtils.isInFinite = function (num) {
 
 module.exports = numberUtils;
 },{"./type":8}],7:[function(require,module,exports){
-/* jshint node: true, esnext: true, loopfunc: true, undef: true, unused: true */
-
 'use strict';
+
+/* jshint node: true, esnext: true, loopfunc: true, undef: true, unused: true */
 
 var checkType = require('./type');
 var getType = checkType.getType;
@@ -684,9 +687,11 @@ var objectUtils = {
 
 module.exports = objectUtils;
 },{"./array":4,"./type":8}],8:[function(require,module,exports){
-/* jshint esnext: true, loopfunc: true */
-
 'use strict';
+
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+/* jshint esnext: true, loopfunc: true */
 
 var toString = ({}).toString;
 var isType = function isType(obj, type) {
@@ -701,7 +706,7 @@ var checkType = {
         return isType(obj, 'Array');
     },
     isArrayLike: function isArrayLike(obj) {
-        return typeof obj === 'object' && isFinite(obj.length);
+        return (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' && isFinite(obj.length);
     },
     isBoolean: function isBoolean(obj) {
         return isType(obj, 'Boolean');
@@ -739,7 +744,7 @@ var checkType = {
         return typeStr.replace(/^\[object /, '').replace(/\]$/, '');
     },
     isObject: function isObject(obj) {
-        var type = typeof obj;
+        var type = typeof obj === 'undefined' ? 'undefined' : _typeof(obj);
         return type === 'function' || type === 'object' && !!obj;
     }
 };
