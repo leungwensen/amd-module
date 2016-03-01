@@ -1,58 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8">
     <title>module</title>
-  </head>
-  <body>
-    <script src="../dist/loader.js"></script>
+    <style>
+        #container {
+            max-width: 978px;
+            margin: 20px auto;
+            padding: 10px;
+        }
+
+        .msg {
+            border: 1px solid #ddd;
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .msg .text {
+            text-align: center;
+        }
+
+        .msg.got {
+            background-color: lightgray;
+        }
+        .msg.init {
+            background-color: lightgoldenrodyellow;
+        }
+        .msg.process {
+            background-color: lightblue;
+        }
+        .msg.execute {
+            background-color: lightgreen;
+        }
+    </style>
+</head>
+<body>
+<div id="container"></div>
+<script src="../dist/loader.js"></script>
 <script>
-define([
-  'amd-module/Module'
-], function (
-  Module
-) {
-  Module.on('module-meta-got', function (meta) {
-    console.log('meta got!!', meta);
-  });
-  Module.on('module-initialised', function (mod) {
-    console.log('initialised!!', mod);
-  });
-  Module.on('module-deps-processed', function (mod) {
-    console.log('deps processed!!', mod);
-  });
-  Module.on('module-executed', function (mod) {
-    console.log('executed!!', mod);
-  });
-  console.log(Module, Module._events);
-});
+    var messageTemplate = [
+        '<div class="msg ${type}">',
+        '<span class="text">${text}</span>',
+        '<pre class="detail">${detail}</pre>',
+        '</div>',
+    ].join('');
+    var containerElement = document.getElementById('container');
+    var msgs = [];
+    function insertMessage(text, detail, type) {
+        msgs.push({
+            text: text,
+            detail: detail,
+            type: type
+        });
+    }
+    function renderMessage(msg) {
+        if (msg) {
+            var oldInnerHTML = containerElement.innerHTML;
+            var newMessage = messageTemplate
+                    .replace('${text}', msg.text)
+                    .replace('${detail}', JSON.stringify(msg.detail, null, '\t'))
+                    .replace('${type}', msg.type);
+            containerElement.innerHTML = oldInnerHTML + newMessage;
+        }
+    }
+    setInterval(function () {
+        if (msgs.length) {
+            renderMessage(msgs.shift());
+        }
+    }, 500);
+    define([
+        'amd-module/Module'
+    ], function (Module) {
+        Module.on('module-meta-got', function (meta) {
+            insertMessage('meta got!!', meta, 'got');
+            // console.log('meta got!!', meta);
+        });
+        Module.on('module-initialised', function (mod) {
+            insertMessage('initialised!!', mod, 'init');
+            // console.log('initialised!!', mod);
+        });
+        Module.on('module-deps-processed', function (mod) {
+            insertMessage('deps processed!!', mod, 'process');
+            // console.log('deps processed!!', mod);
+        });
+        Module.on('module-executed', function (mod) {
+            insertMessage('executed!!', mod, 'execute');
+            // console.log('executed!!', mod);
+        });
+        console.log(Module, Module._events);
+    });
 </script>
-    <script src="module/moduleC.js"></script>
-    <script src="module/moduleD.js"></script>
-    <script>
-define([
-  './module/moduleB'
-], function (
-  moduleB
-) {
-  console.log('loaded ' + moduleB);
-});
+<script src="module/moduleC.js"></script>
+<script src="module/moduleD.js"></script>
+<script>
+    define([
+        './module/moduleB'
+    ], function (moduleB) {
+        console.log('loaded ' + moduleB);
+    });
 
-define([
-  './module/moduleC'
-], function (
-  moduleC
-) {
-  console.log('loaded ' + moduleC);
-});
+    define([
+        './module/moduleC'
+    ], function (moduleC) {
+        console.log('loaded ' + moduleC);
+    });
 
-define([
-  'amd-module/Module'
-], function (
-  Module
-) {
-  console.log(Module);
-});
-    </script>
-  </body>
+    define([
+        'amd-module/Module'
+    ], function (Module) {
+        console.log(Module);
+    });
+</script>
+</body>
 </html>
