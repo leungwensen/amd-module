@@ -3,6 +3,8 @@
 
 A little grave of my AMD loader
 
+[homepage](http://leungwensen.github.io/amd-module/) | [demo](http://leungwensen.github.io/amd-module/demo/module.html)
+
 ## installation
 
 ```shell
